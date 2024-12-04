@@ -25,12 +25,13 @@ export class TodoListComponent implements OnInit, DoCheck{
   }
 
   deleteItemTaskList(event: number): void{
-    this.taskList.splice(event, 1)
+    this.taskList.splice(event, 1);
   }
 
   deleteAllItensTaksList(): void{
     const confirm = window.confirm("Você seja apagar todos ? ");
     confirm ? this.taskList = [] : "";
+    localStorage.removeItem("taskListItem");
   }
 
   getTaskItem(event: TaskList){
@@ -47,7 +48,7 @@ export class TodoListComponent implements OnInit, DoCheck{
   }
 
   saveLocalStorage(){
-    if(this.taskList.length){
+    if(this.taskList.length >= 0){
       localStorage.setItem("taskListItem", JSON.stringify(this.taskList));
     }
   }
